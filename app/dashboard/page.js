@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/dashboard/Sidebar';
-import Header from '@/components/dashboard/Header';
-import DashboardOverview from '@/components/dashboard/DashboardOverview';
-import PatientsPage from '@/components/dashboard/PatientsPage';
-import DiseasesPage from '@/components/dashboard/DiseasesPage';
-import SymptomsPage from '@/components/dashboard/SymptomsPage';
-import DiagnosisPage from '@/components/dashboard/DiagnosisPage';
-import ReportPage from '@/components/dashboard/ReportPage';
+import Sidebar from '../components/dashboard/Sidebar';
+import Header from '../components/dashboard/Header';
+import DashboardOverview from '../components/dashboard/DashboardOverview';
+import PatientsPage from '../components/dashboard/PatientsPage';
+import DiseasesPage from '../components/dashboard/DiseasesPage';
+import SymptomsPage from '../components/dashboard/SymptomsPage';
+import DiagnosisPage from '../components/dashboard/DiagnosisPage';
+import ReportPage from '../components/dashboard/ReportPage';
 
 export default function Dashboard() {
   const router = useRouter();
