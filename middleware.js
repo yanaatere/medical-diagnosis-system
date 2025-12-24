@@ -28,7 +28,9 @@ export async function middleware(request) {
     return NextResponse.next();
   } catch (error) {
     // Invalid token, redirect to login
-    return NextResponse.redirect(new URL('/login', request.url));
+    const response = NextResponse.redirect(new URL('/login', request.url));
+    response.cookies.delete('token');
+    return response;
   }
 }
 
