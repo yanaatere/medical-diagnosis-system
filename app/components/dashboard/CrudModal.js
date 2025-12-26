@@ -1,4 +1,25 @@
+"use client";
+
+import React, { useEffect, useState } from 'react';
+
 export default function CrudModal({ modalMode, modalType, currentData, setCurrentData, onSave, onClose, loading }) {
+  const [diseases, setDiseases] = useState([]);
+
+  useEffect(() => {
+    if (modalType !== 'symptoms') return;
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch('/api/diseases');
+        const data = await res.json();
+        if (!mounted) return;
+        if (data && data.success) setDiseases(data.data || []);
+      } catch (err) {
+        console.error('Failed to fetch diseases', err);
+      }
+    })();
+    return () => { mounted = false };
+  }, [modalType]);
   const getTitle = () => {
     const typeMap = {
       patients: 'Pasien',
@@ -118,6 +139,24 @@ export default function CrudModal({ modalMode, modalType, currentData, setCurren
               onChange={(e) => setCurrentData({ ...currentData, category: e.target.value })} 
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
             />
+            <select
+              multiple
+              value={
+                currentData.disease_ids 
+                  ? currentData.disease_ids.map((v) => String(v)) 
+                  : (currentData.diseases ? currentData.diseases.map((d) => String(d.id)) : [])
+              }
+              onChange={(e) => {
+                const vals = Array.from(e.target.selectedOptions).map((o) => parseInt(o.value));
+                setCurrentData({ ...currentData, disease_ids: vals });
+              }}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none h-40"
+              required
+            >
+              {diseases.map((d) => (
+                <option key={d.id} value={d.id}>{`${d.code} - ${d.name}`}</option>
+              ))}
+            </select>
           </div>
         )}
 

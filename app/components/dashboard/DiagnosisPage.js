@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function DiagnosisPage({ patients, diseases, symptoms, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -15,8 +15,13 @@ export default function DiagnosisPage({ patients, diseases, symptoms, onSuccess 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.patient_id || !formData.disease_id) {
-      alert('Pasien dan Penyakit harus dipilih!');
+    if (!formData.patient_id) {
+      alert('Pasien harus dipilih!');
+      return;
+    }
+
+    if (!formData.disease_id) {
+      alert('Pilih penyakit dari saran berdasarkan gejala yang dipilih.');
       return;
     }
 
@@ -58,6 +63,32 @@ export default function DiagnosisPage({ patients, diseases, symptoms, onSuccess 
     }));
   };
 
+  const suggestions = useMemo(() => {
+    const selected = formData.symptom_ids || [];
+    if (!selected.length) return [];
+
+    const map = new Map();
+    for (const sid of selected) {
+      const symptom = symptoms.find(s => s.id === sid) || symptoms.find(s => String(s.id) === String(sid));
+      if (!symptom || !symptom.diseases) continue;
+      for (const d of symptom.diseases) {
+        const key = d.id;
+        const cur = map.get(key) || { ...d, matchCount: 0 };
+        cur.matchCount += 1;
+        map.set(key, cur);
+      }
+    }
+
+    const arr = Array.from(map.values()).map((d) => ({
+      ...d,
+      matchCount: d.matchCount,
+      matchPercent: Math.round((d.matchCount / selected.length) * 100)
+    }));
+
+    arr.sort((a, b) => b.matchCount - a.matchCount || a.code.localeCompare(b.code));
+    return arr;
+  }, [formData.symptom_ids, symptoms]);
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h3 className="text-lg font-bold mb-6">Form Diagnosis Pasien</h3>
@@ -77,20 +108,7 @@ export default function DiagnosisPage({ patients, diseases, symptoms, onSuccess 
           </select>
         </div>
 
-        <div>
-          <label className="block mb-2 font-semibold text-gray-700">Pilih Penyakit *</label>
-          <select 
-            value={formData.disease_id} 
-            onChange={(e) => setFormData({ ...formData, disease_id: e.target.value })} 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" 
-            required
-          >
-            <option value="">-- Pilih Penyakit --</option>
-            {diseases.map(d => (
-              <option key={d.id} value={d.id}>{d.name} ({d.code})</option>
-            ))}
-          </select>
-        </div>
+        {/* Penyakit dipilih otomatis lewat saran berdasarkan gejala; input dropdown dihapus */}
 
         <div>
           <label className="block mb-3 font-semibold text-gray-700">Pilih Gejala yang Dialami</label>
@@ -106,6 +124,31 @@ export default function DiagnosisPage({ patients, diseases, symptoms, onSuccess 
                 <span className="text-sm">{s.name}</span>
               </label>
             ))}
+          </div>
+        </div>
+
+        <div>
+          <label className="block mb-2 font-semibold text-gray-700">Saran Penyakit Berdasarkan Gejala</label>
+          <div className="space-y-2">
+            {suggestions.length === 0 ? (
+              <div className="text-sm text-gray-500">Pilih gejala untuk melihat saran penyakit.</div>
+            ) : (
+              suggestions.map(d => (
+                <div key={d.id} className={`flex items-center justify-between p-2 border rounded ${String(formData.disease_id) === String(d.id) ? 'bg-green-50 border-green-200' : 'bg-white'}`}>
+                  <div>
+                    <div className="font-semibold">{d.name} <span className="text-xs text-gray-500">({d.code})</span></div>
+                    <div className="text-xs text-gray-500">Kecocokan: {d.matchCount} gejala ({d.matchPercent}%)</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {String(formData.disease_id) === String(d.id) ? (
+                      <button type="button" onClick={() => setFormData({ ...formData, disease_id: '' })} className="px-3 py-1 bg-gray-200 rounded">Batal</button>
+                    ) : (
+                      <button type="button" onClick={() => setFormData({ ...formData, disease_id: d.id })} className="px-3 py-1 bg-purple-600 text-white rounded">Pilih</button>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 

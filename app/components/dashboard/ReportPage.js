@@ -19,7 +19,7 @@ export default function ReportPage({ stats }) {
 
       <div className="bg-white rounded-xl shadow-lg p-6">
         <h3 className="text-lg font-bold mb-4">Penyakit Paling Sering Didiagnosis</h3>
-        <table className="w-full">
+        <table className="w-full">x
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold">Penyakit</th>
