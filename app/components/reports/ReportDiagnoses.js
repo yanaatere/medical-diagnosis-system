@@ -7,7 +7,10 @@ export default function ReportDiagnoses() {
   const [patients, setPatients] = useState([])
   const [patientsMap, setPatientsMap] = useState({})
   const [selectedPatientId, setSelectedPatientId] = useState('')
-  const [selectedDate, setSelectedDate] = useState('')
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date()
+    return today.toISOString().split('T')[0]
+  })
   const [filteredDiagnoses, setFilteredDiagnoses] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -109,7 +112,8 @@ export default function ReportDiagnoses() {
           <button
             onClick={() => {
               setSelectedPatientId('')
-              setSelectedDate('')
+              const today = new Date()
+              setSelectedDate(today.toISOString().split('T')[0])
             }}
             className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
           >
