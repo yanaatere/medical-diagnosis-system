@@ -54,7 +54,7 @@ export default function ReportSymptoms({ symptoms = [], diagnoses = [] }) {
         <div style={{ borderBottom: '2px solid #000', paddingBottom: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <img src="/logo.png" alt="logo" style={{ width: 72, height: 72, objectFit: 'contain' }} onError={(e)=>{e.target.style.display='none'}} />
+              <img src="/logo.webp" alt="logo" style={{ width: 72, height: 72, objectFit: 'contain' }} onError={(e)=>{e.target.style.display='none'}} />
               <div>
                 <div style={{ color: '#0B6CB6', fontWeight: 800, fontSize: 20 }}>KLINIK GIGI AHMAD ARIFIN</div>
                 <div style={{ fontSize: 12, color: '#374151', marginTop: 6 }}>Alamat: Jl Raya Pasar Citayam RT. 01/RW. 11, </div>

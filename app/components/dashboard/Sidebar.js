@@ -54,8 +54,8 @@ export default function Sidebar({ currentPage, setCurrentPage, onMenuSelect }) {
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
         <div className="p-6 border-b sticky top-0 bg-white">
-          <h2 className="text-xl font-bold text-purple-600">🏥 MediDiagnosis</h2>
-          <p className="text-sm text-gray-500">Admin Panel</p>
+          <h2 className="text-xl font-bold text-purple-600">🏥 KLINIK GIGI</h2>
+          <p className="text-sm text-gray-500">AHMAD ARIFIN</p>
         </div>
         
         <nav className="p-4 overflow-y-auto h-[calc(100vh-120px)] lg:h-auto">

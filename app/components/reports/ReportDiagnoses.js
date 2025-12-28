@@ -127,7 +127,7 @@ export default function ReportDiagnoses() {
         {/* Header */}
         <div className="text-center mb-6">
           <div className="flex justify-center mb-2">
-            <img src="/logo.png" alt="logo" style={{ height: '60px' }} />
+            <img src="/logo.webp" alt="logo" style={{ height: '60px' }} />
           </div>
           <h1 style={{ fontWeight: 'bold', fontSize: '14px', margin: '4px 0' }}>LAPORAN REKAM MEDIS PASIEN</h1>
         </div>
@@ -224,7 +224,7 @@ export default function ReportDiagnoses() {
 
         {/* Footer */}
         <div style={{ marginTop: '32px', textAlign: 'right', fontSize: '11px', borderTop: '1px solid #ddd', paddingTop: '12px' }}>
-          <div>Jakarta, {new Date().toLocaleDateString('id-ID')}</div>
+          <div>Depok, {new Date().toLocaleDateString('id-ID')}</div>
           <div style={{ marginTop: '20px' }}>_______________________</div>
           <div style={{ marginTop: '4px' }}>Bapak Ahmad Arifin</div>
         </div>
