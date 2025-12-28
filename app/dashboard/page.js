@@ -10,6 +10,9 @@ import DiseasesPage from '../components/dashboard/DiseasesPage';
 import SymptomsPage from '../components/dashboard/SymptomsPage';
 import DiagnosisPage from '../components/dashboard/DiagnosisPage';
 import ReportPage from '../components/dashboard/ReportPage';
+import ReportPatients from '../components/dashboard/ReportPatients';
+import ReportDiseases from '../components/dashboard/ReportDiseases';
+import ReportSymptoms from '../components/dashboard/ReportSymptoms';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -142,6 +145,16 @@ export default function Dashboard() {
 
         {currentPage === 'report' && (
           <ReportPage stats={stats} />
+        )}
+
+        {currentPage === 'report:patients' && (
+          <ReportPatients patients={patients} />
+        )}
+        {currentPage === 'report:diseases' && (
+          <ReportDiseases diseases={diseases} symptoms={symptoms} diagnoses={diagnoses} />
+        )}
+        {currentPage === 'report:symptoms' && (
+          <ReportSymptoms symptoms={symptoms} diagnoses={diagnoses} />
         )}
       </div>
     </div>
