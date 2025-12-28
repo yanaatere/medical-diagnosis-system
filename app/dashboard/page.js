@@ -10,9 +10,10 @@ import DiseasesPage from '../components/dashboard/DiseasesPage';
 import SymptomsPage from '../components/dashboard/SymptomsPage';
 import DiagnosisPage from '../components/dashboard/DiagnosisPage';
 import ReportPage from '../components/dashboard/ReportPage';
-import ReportPatients from '../components/dashboard/ReportPatients';
-import ReportDiseases from '../components/dashboard/ReportDiseases';
-import ReportSymptoms from '../components/dashboard/ReportSymptoms';
+import ReportPatients from '../components/reports/ReportPatients';
+import ReportDiseases from '../components/reports/ReportDiseases';
+import ReportSymptoms from '../components/reports/ReportSymptoms';
+import ReportDiagnoses from '../components/reports/ReportDiagnoses';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function Dashboard() {
   const [diseases, setDiseases] = useState([]);
   const [symptoms, setSymptoms] = useState([]);
   const [diagnoses, setDiagnoses] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     fetchAllData();
@@ -112,10 +114,10 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
-      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} onMenuSelect={() => setSidebarOpen(false)} />
       
-      <div className="flex-1 p-8 overflow-y-auto">
+      <div className="flex-1 flex flex-col w-full lg:w-auto pt-16 lg:pt-0 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 overflow-y-auto">
         <Header title={getPageTitle()} onLogout={handleLogout} />
 
         {currentPage === 'dashboard' && (
@@ -156,6 +158,9 @@ export default function Dashboard() {
         {currentPage === 'report:symptoms' && (
           <ReportSymptoms symptoms={symptoms} diagnoses={diagnoses} />
         )}
+          {currentPage === 'report:diagnoses' && (
+            <ReportDiagnoses diagnoses={diagnoses} />
+          )}
       </div>
     </div>
   );

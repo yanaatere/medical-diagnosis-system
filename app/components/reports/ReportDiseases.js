@@ -52,8 +52,7 @@ export default function ReportDiseases({ diseases = [], symptoms = [], diagnoses
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <img src="/logo.png" alt="logo" style={{ width: 72, height: 72, objectFit: 'contain' }} onError={(e)=>{e.target.style.display='none'}} />
               <div>
-                <div style={{ color: '#0B6CB6', fontWeight: 800, fontSize: 20 }}>SMARTPREG</div>
-                <div style={{ fontSize: 12, color: '#374151', marginTop: 4 }}>Smart Sistem Untuk Layanan Kehamilan</div>
+                <div style={{ color: '#0B6CB6', fontWeight: 800, fontSize: 20 }}>KLINIK GIGI AHMAD ARIFIN</div>
                 <div style={{ fontSize: 12, color: '#374151', marginTop: 6 }}>Alamat: Jl Raya Pasar Citayam RT. 01/RW. 11, </div>
                 <div style={{ fontSize: 12, color: '#374151' }}>Bojong Pd. Terong, Kec. Cipayung, Depok, Jawa Barat</div>
               </div>
@@ -95,7 +94,7 @@ export default function ReportDiseases({ diseases = [], symptoms = [], diagnoses
 
         <div style={{ marginTop: 18, textAlign: 'right', fontSize: 13, color: '#374151' }}>
           <div>Depok, {today.toLocaleDateString()}</div>
-          <div style={{ marginTop: 6 }}>Admin MediDiagnosis</div>
+          <div style={{ marginTop: 6 }}>Bapak Ahmad Arifin</div>
         </div>
 
         <div className="mt-4 no-print" style={{ display: 'flex', justifyContent: 'flex-end' }}>

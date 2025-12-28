@@ -34,10 +34,9 @@ export default function ReportPatients({ patients }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <img src="/logo.png" alt="logo" style={{ width: 72, height: 72, objectFit: 'contain' }} onError={(e)=>{e.target.style.display='none'}} />
               <div>
-                <div className="title">SMARTPREG</div>
-                <div style={{ fontSize: 12, color: '#374151', marginTop: 4 }}>Smart Sistem Untuk Layanan Kehamilan</div>
-                <div style={{ fontSize: 12, color: '#374151', marginTop: 6 }}>Alamat: Jl. H. Nadi No.28, RT.007/RW.001, Kec. Cihere</div>
-                <div style={{ fontSize: 12, color: '#374151' }}>Kel. Cinere, Kota. Depok, Jawa Barat.</div>
+                <div style={{ color: '#0B6CB6', fontWeight: 800, fontSize: 20 }}>KLINIK GIGI AHMAD ARIFIN</div>
+                <div style={{ fontSize: 12, color: '#374151', marginTop: 6 }}>Alamat: Jl Raya Pasar Citayam RT. 01/RW. 11, </div>
+                <div style={{ fontSize: 12, color: '#374151' }}>Bojong Pd. Terong, Kec. Cipayung, Depok, Jawa Barat</div>
               </div>
             </div>
 
@@ -79,7 +78,7 @@ export default function ReportPatients({ patients }) {
 
         <div className="report-footer">
           <div>Depok, {today.toLocaleDateString()}</div>
-          <div style={{ marginTop: 6 }}>Admin MediDiagnosis</div>
+          <div style={{ marginTop: 6 }}>Bapak Ahmad Arifin</div>
         </div>
 
         <div className="mt-4 no-print" style={{ display: 'flex', justifyContent: 'flex-end' }}>

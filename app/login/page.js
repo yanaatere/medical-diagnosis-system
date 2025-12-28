@@ -40,9 +40,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-purple-900 p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-4">🏥</div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">MediDiagnosis</h1>
-          <p className="text-gray-600">Sistem Diagnosis Medis</p>
+          <img src="/logo.png" alt="Klinik logo" className="w-24 h-24 mx-auto mb-4 object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">KLINIK GIGI</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">AHMAD ARIFIN</h1>
         </div>
 
         {error && (
