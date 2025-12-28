@@ -63,7 +63,7 @@ export default function ReportSymptoms({ symptoms = [], diagnoses = [] }) {
             </div>
 
             <div style={{ textAlign: 'right', fontSize: 12, color: '#374151' }}>
-              <div>Telp. 089656328112</div>
+              <div>Telp. 0856-9260-8972</div>
             </div>
           </div>
         </div>
