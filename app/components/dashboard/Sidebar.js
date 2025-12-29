@@ -54,7 +54,10 @@ export default function Sidebar({ currentPage, setCurrentPage, onMenuSelect }) {
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
         <div className="p-6 border-b sticky top-0 bg-white">
-          <h2 className="text-xl font-bold text-purple-600">🏥 KLINIK GIGI</h2>
+          <div className="flex items-center gap-3 mb-2">
+            <img src="/logo.webp" alt="KLINIK GIGI Logo" className="h-12" />
+            <h2 className="text-xl font-bold text-purple-600">KLINIK GIGI</h2>
+          </div>
           <p className="text-sm text-gray-500">AHMAD ARIFIN</p>
         </div>
         
